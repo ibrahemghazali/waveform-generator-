@@ -193,17 +193,9 @@ Cursor button moves selection arrow.
 
 ---
 
-# ⚠️ Important Notes
-
-- Interrupts are used for testing purposes in this version
-- FSYNC timing is software-controlled (blocking SPI)
-- System is designed for PIC18F4620 architecture
-
----
-
 # 🛠️ Required Development Environment
 
-This project is designed to run on:
+This project is designed to run on: mplabxide environment 
 
 ## 🔧 :contentReference[oaicite:0]{index=0}
 
