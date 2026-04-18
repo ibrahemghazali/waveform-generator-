@@ -1,0 +1,285 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"65 ECU/RELAY/../../MCAL/GPIO/GPIO.h
+[; ;ECU/RELAY/../../MCAL/GPIO/GPIO.h: 65: {
+[s S1 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . port pin direction logic ]
+"28 ECU/RELAY/RELAY.h
+[; ;ECU/RELAY/RELAY.h: 28: {
+[s S3 `S1 1 ]
+[n S3 . relay_pin ]
+"13 ECU/RELAY/RELAY.c
+[; ;ECU/RELAY/RELAY.c: 13:         ret=GPIO_PIN_enable_direction(&(relay->relay_pin),GPIO_OUTPUT);
+[c E14 0 1 .. ]
+[n E14 . GPIO_OUTPUT GPIO_INPUT  ]
+"101 ECU/RELAY/../../MCAL/GPIO/GPIO.h
+[; ;ECU/RELAY/../../MCAL/GPIO/GPIO.h: 101: STD_RETURN_TYPE GPIO_PIN_enable_direction(pin_config_t *pin,PIN_DIRECTION_T direction);
+[v _GPIO_PIN_enable_direction `(uc ~T0 @X0 0 ef2`*S1`E14 ]
+"14 ECU/RELAY/RELAY.c
+[; ;ECU/RELAY/RELAY.c: 14:         ret=GPIO_PIN_write_logic(&(relay->relay_pin),relay->relay_pin.logic);
+[c E18 0 1 .. ]
+[n E18 . GPIO_LOW GPIO_HIGH  ]
+"121 ECU/RELAY/../../MCAL/GPIO/GPIO.h
+[; ;ECU/RELAY/../../MCAL/GPIO/GPIO.h: 121: STD_RETURN_TYPE GPIO_PIN_write_logic(pin_config_t *pin,PIN_LOGIC_T logic);
+[v _GPIO_PIN_write_logic `(uc ~T0 @X0 0 ef2`*S1`E18 ]
+"139
+[; ;ECU/RELAY/../../MCAL/GPIO/GPIO.h: 139: STD_RETURN_TYPE GPIO_PIN_toggle_Logic(pin_config_t *pin);
+[v _GPIO_PIN_toggle_Logic `(uc ~T0 @X0 0 ef1`*S1 ]
+"4 ECU/RELAY/RELAY.c
+[; ;ECU/RELAY/RELAY.c: 4: STD_RETURN_TYPE ECU_RELAY_initialize(RELAY_config_t *relay)
+[v _ECU_RELAY_initialize `(uc ~T0 @X0 1 ef1`*S3 ]
+"5
+[; ;ECU/RELAY/RELAY.c: 5: {
+{
+[e :U _ECU_RELAY_initialize ]
+"4
+[; ;ECU/RELAY/RELAY.c: 4: STD_RETURN_TYPE ECU_RELAY_initialize(RELAY_config_t *relay)
+[v _relay `*S3 ~T0 @X0 1 r1 ]
+"5
+[; ;ECU/RELAY/RELAY.c: 5: {
+[f ]
+"6
+[; ;ECU/RELAY/RELAY.c: 6:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"7
+[; ;ECU/RELAY/RELAY.c: 7:     if(0==relay)
+[e $ ! == -> -> 0 `i `*S3 _relay 5  ]
+"8
+[; ;ECU/RELAY/RELAY.c: 8:     {
+{
+"9
+[; ;ECU/RELAY/RELAY.c: 9:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"10
+[; ;ECU/RELAY/RELAY.c: 10:     }
+}
+[e $U 6  ]
+"11
+[; ;ECU/RELAY/RELAY.c: 11:     else
+[e :U 5 ]
+"12
+[; ;ECU/RELAY/RELAY.c: 12:     {
+{
+"13
+[; ;ECU/RELAY/RELAY.c: 13:         ret=GPIO_PIN_enable_direction(&(relay->relay_pin),GPIO_OUTPUT);
+[e = _ret ( _GPIO_PIN_enable_direction (2 , &U . *U _relay 0 . `E14 0 ]
+"14
+[; ;ECU/RELAY/RELAY.c: 14:         ret=GPIO_PIN_write_logic(&(relay->relay_pin),relay->relay_pin.logic);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U . *U _relay 0 -> . . *U _relay 0 3 `E18 ]
+"15
+[; ;ECU/RELAY/RELAY.c: 15:     }
+}
+[e :U 6 ]
+"16
+[; ;ECU/RELAY/RELAY.c: 16:     return ret;
+[e ) _ret ]
+[e $UE 4  ]
+"17
+[; ;ECU/RELAY/RELAY.c: 17: }
+[e :UE 4 ]
+}
+"18
+[; ;ECU/RELAY/RELAY.c: 18: STD_RETURN_TYPE ECU_RELAY_turn_on(RELAY_config_t *relay)
+[v _ECU_RELAY_turn_on `(uc ~T0 @X0 1 ef1`*S3 ]
+"19
+[; ;ECU/RELAY/RELAY.c: 19: {
+{
+[e :U _ECU_RELAY_turn_on ]
+"18
+[; ;ECU/RELAY/RELAY.c: 18: STD_RETURN_TYPE ECU_RELAY_turn_on(RELAY_config_t *relay)
+[v _relay `*S3 ~T0 @X0 1 r1 ]
+"19
+[; ;ECU/RELAY/RELAY.c: 19: {
+[f ]
+"20
+[; ;ECU/RELAY/RELAY.c: 20:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"21
+[; ;ECU/RELAY/RELAY.c: 21:     if(0==relay)
+[e $ ! == -> -> 0 `i `*S3 _relay 8  ]
+"22
+[; ;ECU/RELAY/RELAY.c: 22:     {
+{
+"23
+[; ;ECU/RELAY/RELAY.c: 23:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"24
+[; ;ECU/RELAY/RELAY.c: 24:     }
+}
+[e $U 9  ]
+"25
+[; ;ECU/RELAY/RELAY.c: 25:     else
+[e :U 8 ]
+"26
+[; ;ECU/RELAY/RELAY.c: 26:     {
+{
+"27
+[; ;ECU/RELAY/RELAY.c: 27:       ret=GPIO_PIN_write_logic(&(relay->relay_pin),GPIO_HIGH);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U . *U _relay 0 . `E18 1 ]
+"28
+[; ;ECU/RELAY/RELAY.c: 28:     }
+}
+[e :U 9 ]
+"29
+[; ;ECU/RELAY/RELAY.c: 29:     return ret;
+[e ) _ret ]
+[e $UE 7  ]
+"30
+[; ;ECU/RELAY/RELAY.c: 30: }
+[e :UE 7 ]
+}
+"31
+[; ;ECU/RELAY/RELAY.c: 31: STD_RETURN_TYPE ECU_RELAY_turn_off(RELAY_config_t *relay)
+[v _ECU_RELAY_turn_off `(uc ~T0 @X0 1 ef1`*S3 ]
+"32
+[; ;ECU/RELAY/RELAY.c: 32: {
+{
+[e :U _ECU_RELAY_turn_off ]
+"31
+[; ;ECU/RELAY/RELAY.c: 31: STD_RETURN_TYPE ECU_RELAY_turn_off(RELAY_config_t *relay)
+[v _relay `*S3 ~T0 @X0 1 r1 ]
+"32
+[; ;ECU/RELAY/RELAY.c: 32: {
+[f ]
+"33
+[; ;ECU/RELAY/RELAY.c: 33:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"34
+[; ;ECU/RELAY/RELAY.c: 34:     if(0==relay)
+[e $ ! == -> -> 0 `i `*S3 _relay 11  ]
+"35
+[; ;ECU/RELAY/RELAY.c: 35:     {
+{
+"36
+[; ;ECU/RELAY/RELAY.c: 36:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"37
+[; ;ECU/RELAY/RELAY.c: 37:     }
+}
+[e $U 12  ]
+"38
+[; ;ECU/RELAY/RELAY.c: 38:     else
+[e :U 11 ]
+"39
+[; ;ECU/RELAY/RELAY.c: 39:     {
+{
+"40
+[; ;ECU/RELAY/RELAY.c: 40:          ret=GPIO_PIN_write_logic(&(relay->relay_pin),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U . *U _relay 0 . `E18 0 ]
+"41
+[; ;ECU/RELAY/RELAY.c: 41:     }
+}
+[e :U 12 ]
+"42
+[; ;ECU/RELAY/RELAY.c: 42:     return ret;
+[e ) _ret ]
+[e $UE 10  ]
+"43
+[; ;ECU/RELAY/RELAY.c: 43: }
+[e :UE 10 ]
+}
+"44
+[; ;ECU/RELAY/RELAY.c: 44: STD_RETURN_TYPE ECU_RELAY_toggle_state(RELAY_config_t *relay)
+[v _ECU_RELAY_toggle_state `(uc ~T0 @X0 1 ef1`*S3 ]
+"45
+[; ;ECU/RELAY/RELAY.c: 45: {
+{
+[e :U _ECU_RELAY_toggle_state ]
+"44
+[; ;ECU/RELAY/RELAY.c: 44: STD_RETURN_TYPE ECU_RELAY_toggle_state(RELAY_config_t *relay)
+[v _relay `*S3 ~T0 @X0 1 r1 ]
+"45
+[; ;ECU/RELAY/RELAY.c: 45: {
+[f ]
+"46
+[; ;ECU/RELAY/RELAY.c: 46:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"47
+[; ;ECU/RELAY/RELAY.c: 47:     if(0==relay)
+[e $ ! == -> -> 0 `i `*S3 _relay 14  ]
+"48
+[; ;ECU/RELAY/RELAY.c: 48:     {
+{
+"49
+[; ;ECU/RELAY/RELAY.c: 49:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"50
+[; ;ECU/RELAY/RELAY.c: 50:     }
+}
+[e $U 15  ]
+"51
+[; ;ECU/RELAY/RELAY.c: 51:     else
+[e :U 14 ]
+"52
+[; ;ECU/RELAY/RELAY.c: 52:     {
+{
+"53
+[; ;ECU/RELAY/RELAY.c: 53:         ret=GPIO_PIN_toggle_Logic(&(relay->relay_pin));
+[e = _ret ( _GPIO_PIN_toggle_Logic (1 &U . *U _relay 0 ]
+"54
+[; ;ECU/RELAY/RELAY.c: 54:     }
+}
+[e :U 15 ]
+"55
+[; ;ECU/RELAY/RELAY.c: 55:     return ret;
+[e ) _ret ]
+[e $UE 13  ]
+"56
+[; ;ECU/RELAY/RELAY.c: 56: }
+[e :UE 13 ]
+}
+"57
+[; ;ECU/RELAY/RELAY.c: 57: STD_RETURN_TYPE ECU_RELAY_turn(RELAY_config_t *relay,uint8 state)
+[v _ECU_RELAY_turn `(uc ~T0 @X0 1 ef2`*S3`uc ]
+"58
+[; ;ECU/RELAY/RELAY.c: 58: {
+{
+[e :U _ECU_RELAY_turn ]
+"57
+[; ;ECU/RELAY/RELAY.c: 57: STD_RETURN_TYPE ECU_RELAY_turn(RELAY_config_t *relay,uint8 state)
+[v _relay `*S3 ~T0 @X0 1 r1 ]
+[v _state `uc ~T0 @X0 1 r2 ]
+"58
+[; ;ECU/RELAY/RELAY.c: 58: {
+[f ]
+"59
+[; ;ECU/RELAY/RELAY.c: 59:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"60
+[; ;ECU/RELAY/RELAY.c: 60:     if((0==relay)||state>1)
+[e $ ! || == -> -> 0 `i `*S3 _relay > -> _state `i -> 1 `i 17  ]
+"61
+[; ;ECU/RELAY/RELAY.c: 61:     {
+{
+"62
+[; ;ECU/RELAY/RELAY.c: 62:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"63
+[; ;ECU/RELAY/RELAY.c: 63:     }
+}
+[e $U 18  ]
+"64
+[; ;ECU/RELAY/RELAY.c: 64:     else
+[e :U 17 ]
+"65
+[; ;ECU/RELAY/RELAY.c: 65:     {
+{
+"66
+[; ;ECU/RELAY/RELAY.c: 66:         ret=GPIO_PIN_write_logic(&(relay->relay_pin),state);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U . *U _relay 0 -> _state `E18 ]
+"67
+[; ;ECU/RELAY/RELAY.c: 67:     }
+}
+[e :U 18 ]
+"68
+[; ;ECU/RELAY/RELAY.c: 68:     return ret;
+[e ) _ret ]
+[e $UE 16  ]
+"69
+[; ;ECU/RELAY/RELAY.c: 69: }
+[e :UE 16 ]
+}

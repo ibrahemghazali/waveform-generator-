@@ -1,0 +1,179 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"65 ECU/BUTTON/../../MCAL/GPIO/GPIO.h
+[; ;ECU/BUTTON/../../MCAL/GPIO/GPIO.h: 65: {
+[s S1 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . port pin direction logic ]
+"32 ECU/BUTTON/BUTTON.h
+[; ;ECU/BUTTON/BUTTON.h: 32: {
+[s S3 `S1 1 `uc 1 ]
+[n S3 . BUTTON_pin BUTTON_connection ]
+"13 ECU/BUTTON/BUTTON.c
+[; ;ECU/BUTTON/BUTTON.c: 13:         ret=GPIO_PIN_enable_direction(&(button->BUTTON_pin),GPIO_INPUT);
+[c E14 0 1 .. ]
+[n E14 . GPIO_OUTPUT GPIO_INPUT  ]
+"101 ECU/BUTTON/../../MCAL/GPIO/GPIO.h
+[; ;ECU/BUTTON/../../MCAL/GPIO/GPIO.h: 101: STD_RETURN_TYPE GPIO_PIN_enable_direction(pin_config_t *pin,PIN_DIRECTION_T direction);
+[v _GPIO_PIN_enable_direction `(uc ~T0 @X0 0 ef2`*S1`E14 ]
+"17 ECU/BUTTON/BUTTON.c
+[; ;ECU/BUTTON/BUTTON.c: 17: STD_RETURN_TYPE ECU_BUTTON_get_state(BUTTON_config_t *button,BUTTON_STATE_T *button_state)
+[c E86 0 1 .. ]
+[n E86 . BUTTON_ACTIVE BUTTON_NOT_ACTIVE  ]
+"20
+[; ;ECU/BUTTON/BUTTON.c: 20:     PIN_LOGIC_T pin_state=0;
+[c E18 0 1 .. ]
+[n E18 . GPIO_LOW GPIO_HIGH  ]
+"131 ECU/BUTTON/../../MCAL/GPIO/GPIO.h
+[; ;ECU/BUTTON/../../MCAL/GPIO/GPIO.h: 131: STD_RETURN_TYPE GPIO_PIN_read_logic(pin_config_t *pin,PIN_LOGIC_T *logic);
+[v _GPIO_PIN_read_logic `(uc ~T0 @X0 0 ef2`*S1`*E18 ]
+"28 ECU/BUTTON/BUTTON.c
+[; ;ECU/BUTTON/BUTTON.c: 28:         if(BUTTON_PULL_DOWN==button->BUTTON_connection)
+[c E82 0 1 .. ]
+[n E82 . BUTTON_PULL_UP BUTTON_PULL_DOWN  ]
+"4 ECU/BUTTON/BUTTON.c
+[; ;ECU/BUTTON/BUTTON.c: 4: STD_RETURN_TYPE ECU_BUTTON_initialize(BUTTON_config_t *button)
+[v _ECU_BUTTON_initialize `(uc ~T0 @X0 1 ef1`*S3 ]
+"5
+[; ;ECU/BUTTON/BUTTON.c: 5: {
+{
+[e :U _ECU_BUTTON_initialize ]
+"4
+[; ;ECU/BUTTON/BUTTON.c: 4: STD_RETURN_TYPE ECU_BUTTON_initialize(BUTTON_config_t *button)
+[v _button `*S3 ~T0 @X0 1 r1 ]
+"5
+[; ;ECU/BUTTON/BUTTON.c: 5: {
+[f ]
+"6
+[; ;ECU/BUTTON/BUTTON.c: 6:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"7
+[; ;ECU/BUTTON/BUTTON.c: 7:     if(0==button)
+[e $ ! == -> -> 0 `i `*S3 _button 5  ]
+"8
+[; ;ECU/BUTTON/BUTTON.c: 8:     {
+{
+"9
+[; ;ECU/BUTTON/BUTTON.c: 9:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"10
+[; ;ECU/BUTTON/BUTTON.c: 10:     }
+}
+[e $U 6  ]
+"11
+[; ;ECU/BUTTON/BUTTON.c: 11:     else
+[e :U 5 ]
+"12
+[; ;ECU/BUTTON/BUTTON.c: 12:     {
+{
+"13
+[; ;ECU/BUTTON/BUTTON.c: 13:         ret=GPIO_PIN_enable_direction(&(button->BUTTON_pin),GPIO_INPUT);
+[e = _ret ( _GPIO_PIN_enable_direction (2 , &U . *U _button 0 . `E14 1 ]
+"14
+[; ;ECU/BUTTON/BUTTON.c: 14:     }
+}
+[e :U 6 ]
+"15
+[; ;ECU/BUTTON/BUTTON.c: 15:     return ret;
+[e ) _ret ]
+[e $UE 4  ]
+"16
+[; ;ECU/BUTTON/BUTTON.c: 16: }
+[e :UE 4 ]
+}
+"17
+[; ;ECU/BUTTON/BUTTON.c: 17: STD_RETURN_TYPE ECU_BUTTON_get_state(BUTTON_config_t *button,BUTTON_STATE_T *button_state)
+[v _ECU_BUTTON_get_state `(uc ~T0 @X0 1 ef2`*S3`*E86 ]
+"18
+[; ;ECU/BUTTON/BUTTON.c: 18: {
+{
+[e :U _ECU_BUTTON_get_state ]
+"17
+[; ;ECU/BUTTON/BUTTON.c: 17: STD_RETURN_TYPE ECU_BUTTON_get_state(BUTTON_config_t *button,BUTTON_STATE_T *button_state)
+[v _button `*S3 ~T0 @X0 1 r1 ]
+[v _button_state `*E86 ~T0 @X0 1 r2 ]
+"18
+[; ;ECU/BUTTON/BUTTON.c: 18: {
+[f ]
+"19
+[; ;ECU/BUTTON/BUTTON.c: 19:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"20
+[; ;ECU/BUTTON/BUTTON.c: 20:     PIN_LOGIC_T pin_state=0;
+[v _pin_state `E18 ~T0 @X0 1 a ]
+[e = _pin_state -> -> 0 `i `E18 ]
+"21
+[; ;ECU/BUTTON/BUTTON.c: 21:     if(0==button)
+[e $ ! == -> -> 0 `i `*S3 _button 8  ]
+"22
+[; ;ECU/BUTTON/BUTTON.c: 22:     {
+{
+"23
+[; ;ECU/BUTTON/BUTTON.c: 23:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"24
+[; ;ECU/BUTTON/BUTTON.c: 24:     }
+}
+[e $U 9  ]
+"25
+[; ;ECU/BUTTON/BUTTON.c: 25:     else
+[e :U 8 ]
+"26
+[; ;ECU/BUTTON/BUTTON.c: 26:     {
+{
+"27
+[; ;ECU/BUTTON/BUTTON.c: 27:         ret=GPIO_PIN_read_logic(&(button->BUTTON_pin),&pin_state);
+[e = _ret ( _GPIO_PIN_read_logic (2 , &U . *U _button 0 &U _pin_state ]
+"28
+[; ;ECU/BUTTON/BUTTON.c: 28:         if(BUTTON_PULL_DOWN==button->BUTTON_connection)
+[e $ ! == -> . `E82 1 `i -> . *U _button 1 `i 10  ]
+"29
+[; ;ECU/BUTTON/BUTTON.c: 29:         {
+{
+"30
+[; ;ECU/BUTTON/BUTTON.c: 30:             *button_state=(BUTTON_STATE_T)pin_state;
+[e = *U _button_state -> _pin_state `E86 ]
+"31
+[; ;ECU/BUTTON/BUTTON.c: 31:         }
+}
+[e $U 11  ]
+"32
+[; ;ECU/BUTTON/BUTTON.c: 32:         else if(BUTTON_PULL_UP==button->BUTTON_connection)
+[e :U 10 ]
+[e $ ! == -> . `E82 0 `i -> . *U _button 1 `i 12  ]
+"33
+[; ;ECU/BUTTON/BUTTON.c: 33:         {
+{
+"34
+[; ;ECU/BUTTON/BUTTON.c: 34:             *button_state=!(BUTTON_STATE_T)pin_state;
+[e = *U _button_state -> -> ! != -> -> _pin_state `E86 `ui -> -> 0 `i `ui `i `E86 ]
+"35
+[; ;ECU/BUTTON/BUTTON.c: 35:         }
+}
+[e $U 13  ]
+"36
+[; ;ECU/BUTTON/BUTTON.c: 36:         else
+[e :U 12 ]
+"37
+[; ;ECU/BUTTON/BUTTON.c: 37:         {
+{
+"38
+[; ;ECU/BUTTON/BUTTON.c: 38:             ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"39
+[; ;ECU/BUTTON/BUTTON.c: 39:         }
+}
+[e :U 13 ]
+[e :U 11 ]
+"40
+[; ;ECU/BUTTON/BUTTON.c: 40:     }
+}
+[e :U 9 ]
+"41
+[; ;ECU/BUTTON/BUTTON.c: 41:     return ret;
+[e ) _ret ]
+[e $UE 7  ]
+"42
+[; ;ECU/BUTTON/BUTTON.c: 42: }
+[e :UE 7 ]
+}

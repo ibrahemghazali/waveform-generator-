@@ -1,0 +1,168 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"65 ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h
+[; ;ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h: 65: {
+[s S1 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . port pin direction logic ]
+"35 ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.h
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.h: 35: {
+[s S3 `S1 -> 4 `i ]
+[n S3 . seven_segment_pins ]
+"93 ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 93:             ret=GPIO_PIN_enable_direction(&(seven_segment->seven_segment_pins[counter]),GPIO_OUTPUT);
+[c E14 0 1 .. ]
+[n E14 . GPIO_OUTPUT GPIO_INPUT  ]
+"101 ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h
+[; ;ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h: 101: STD_RETURN_TYPE GPIO_PIN_enable_direction(pin_config_t *pin,PIN_DIRECTION_T direction);
+[v _GPIO_PIN_enable_direction `(uc ~T0 @X0 0 ef2`*S1`E14 ]
+"112 ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 112:             ret=GPIO_PIN_write_logic(&(seven_segment->seven_segment_pins[counter]),((number>>counter)&(1)));
+[c E18 0 1 .. ]
+[n E18 . GPIO_LOW GPIO_HIGH  ]
+"121 ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h
+[; ;ECU/SEVEN_SEGMENT/../../MCAL/GPIO/GPIO.h: 121: STD_RETURN_TYPE GPIO_PIN_write_logic(pin_config_t *pin,PIN_LOGIC_T logic);
+[v _GPIO_PIN_write_logic `(uc ~T0 @X0 0 ef2`*S1`E18 ]
+"81 ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 81: STD_RETURN_TYPE ECU_seven_segment_BCD_initialize(seven_segment_t *seven_segment)
+[v _ECU_seven_segment_BCD_initialize `(uc ~T0 @X0 1 ef1`*S3 ]
+"82
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 82: {
+{
+[e :U _ECU_seven_segment_BCD_initialize ]
+"81
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 81: STD_RETURN_TYPE ECU_seven_segment_BCD_initialize(seven_segment_t *seven_segment)
+[v _seven_segment `*S3 ~T0 @X0 1 r1 ]
+"82
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 82: {
+[f ]
+"83
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 83:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"84
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 84:     uint8 counter=0;
+[v _counter `uc ~T0 @X0 1 a ]
+[e = _counter -> -> 0 `i `uc ]
+"85
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 85:     if(0==seven_segment)
+[e $ ! == -> -> 0 `i `*S3 _seven_segment 5  ]
+"86
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 86:     {
+{
+"87
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 87:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"88
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 88:     }
+}
+[e $U 6  ]
+"89
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 89:     else
+[e :U 5 ]
+"90
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 90:     {
+{
+"91
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 91:         for(counter=0;counter<4;counter++)
+{
+[e = _counter -> -> 0 `i `uc ]
+[e $ < -> _counter `i -> 4 `i 7  ]
+[e $U 8  ]
+[e :U 7 ]
+"92
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 92:         {
+{
+"93
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 93:             ret=GPIO_PIN_enable_direction(&(seven_segment->seven_segment_pins[counter]),GPIO_OUTPUT);
+[e = _ret ( _GPIO_PIN_enable_direction (2 , &U *U + &U . *U _seven_segment 0 * -> _counter `ux -> -> # *U &U . *U _seven_segment 0 `ui `ux . `E14 0 ]
+"94
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 94:         }
+}
+[e ++ _counter -> -> 1 `i `uc ]
+[e $ < -> _counter `i -> 4 `i 7  ]
+[e :U 8 ]
+}
+"96
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 96:     }
+}
+[e :U 6 ]
+"97
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 97:     return ret;
+[e ) _ret ]
+[e $UE 4  ]
+"98
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 98: }
+[e :UE 4 ]
+}
+"100
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 100: STD_RETURN_TYPE ECU_seven_segment_BCD_write_number(seven_segment_t *seven_segment,uint8 number)
+[v _ECU_seven_segment_BCD_write_number `(uc ~T0 @X0 1 ef2`*S3`uc ]
+"101
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 101: {
+{
+[e :U _ECU_seven_segment_BCD_write_number ]
+"100
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 100: STD_RETURN_TYPE ECU_seven_segment_BCD_write_number(seven_segment_t *seven_segment,uint8 number)
+[v _seven_segment `*S3 ~T0 @X0 1 r1 ]
+[v _number `uc ~T0 @X0 1 r2 ]
+"101
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 101: {
+[f ]
+"102
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 102:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"103
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 103:     uint8 counter=0;
+[v _counter `uc ~T0 @X0 1 a ]
+[e = _counter -> -> 0 `i `uc ]
+"104
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 104:     if(0==seven_segment||number>9)
+[e $ ! || == -> -> 0 `i `*S3 _seven_segment > -> _number `i -> 9 `i 11  ]
+"105
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 105:     {
+{
+"106
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 106:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"107
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 107:     }
+}
+[e $U 12  ]
+"108
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 108:     else
+[e :U 11 ]
+"109
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 109:     {
+{
+"110
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 110:         for(counter=0;counter<4;counter++)
+{
+[e = _counter -> -> 0 `i `uc ]
+[e $ < -> _counter `i -> 4 `i 13  ]
+[e $U 14  ]
+[e :U 13 ]
+"111
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 111:         {
+{
+"112
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 112:             ret=GPIO_PIN_write_logic(&(seven_segment->seven_segment_pins[counter]),((number>>counter)&(1)));
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _seven_segment 0 * -> _counter `ux -> -> # *U &U . *U _seven_segment 0 `ui `ux -> & >> -> _number `i -> _counter `i -> 1 `i `E18 ]
+"113
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 113:         }
+}
+[e ++ _counter -> -> 1 `i `uc ]
+[e $ < -> _counter `i -> 4 `i 13  ]
+[e :U 14 ]
+}
+"114
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 114:     }
+}
+[e :U 12 ]
+"115
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 115:     return ret;
+[e ) _ret ]
+[e $UE 10  ]
+"116
+[; ;ECU/SEVEN_SEGMENT/SEVEN_SEGMENT.c: 116: }
+[e :UE 10 ]
+}

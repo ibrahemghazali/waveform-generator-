@@ -1,0 +1,245 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"65 ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h
+[; ;ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h: 65: {
+[s S1 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1 . port pin direction logic ]
+"30 ECU/MOTOR_DRIVER/MOTOR_DRIVER.h
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.h: 30: {
+[s S3 `S1 -> 2 `i ]
+[n S3 . motor_pins ]
+"11 ECU/MOTOR_DRIVER/MOTOR_DRIVER.c
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 11:         ret=GPIO_PIN_enable_direction(&(motor->motor_pins[0]),GPIO_OUTPUT);
+[c E14 0 1 .. ]
+[n E14 . GPIO_OUTPUT GPIO_INPUT  ]
+"101 ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h
+[; ;ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h: 101: STD_RETURN_TYPE GPIO_PIN_enable_direction(pin_config_t *pin,PIN_DIRECTION_T direction);
+[v _GPIO_PIN_enable_direction `(uc ~T0 @X0 0 ef2`*S1`E14 ]
+"13 ECU/MOTOR_DRIVER/MOTOR_DRIVER.c
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 13:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[0]),GPIO_LOW);
+[c E18 0 1 .. ]
+[n E18 . GPIO_LOW GPIO_HIGH  ]
+"121 ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h
+[; ;ECU/MOTOR_DRIVER/../../MCAL/GPIO/GPIO.h: 121: STD_RETURN_TYPE GPIO_PIN_write_logic(pin_config_t *pin,PIN_LOGIC_T logic);
+[v _GPIO_PIN_write_logic `(uc ~T0 @X0 0 ef2`*S1`E18 ]
+"2 ECU/MOTOR_DRIVER/MOTOR_DRIVER.c
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 2: STD_RETURN_TYPE ECU_MOTOR_DRIVER_initialize(MOTOR_t *motor)
+[v _ECU_MOTOR_DRIVER_initialize `(uc ~T0 @X0 1 ef1`*S3 ]
+"3
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 3: {
+{
+[e :U _ECU_MOTOR_DRIVER_initialize ]
+"2
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 2: STD_RETURN_TYPE ECU_MOTOR_DRIVER_initialize(MOTOR_t *motor)
+[v _motor `*S3 ~T0 @X0 1 r1 ]
+"3
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 3: {
+[f ]
+"4
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 4:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"5
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 5:     if(0==motor)
+[e $ ! == -> -> 0 `i `*S3 _motor 5  ]
+"6
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 6:     {
+{
+"7
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 7:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"8
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 8:     }
+}
+[e $U 6  ]
+"9
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 9:     else
+[e :U 5 ]
+"10
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 10:     {
+{
+"11
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 11:         ret=GPIO_PIN_enable_direction(&(motor->motor_pins[0]),GPIO_OUTPUT);
+[e = _ret ( _GPIO_PIN_enable_direction (2 , &U *U + &U . *U _motor 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E14 0 ]
+"12
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 12:         ret=GPIO_PIN_enable_direction(&(motor->motor_pins[1]),GPIO_OUTPUT);
+[e = _ret ( _GPIO_PIN_enable_direction (2 , &U *U + &U . *U _motor 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E14 0 ]
+"13
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 13:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[0]),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 0 ]
+"14
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 14:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[1]),GPIO_HIGH);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 1 ]
+"15
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 15:     }
+}
+[e :U 6 ]
+"16
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 16:     return ret;
+[e ) _ret ]
+[e $UE 4  ]
+"17
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 17: }
+[e :UE 4 ]
+}
+"20
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 20: STD_RETURN_TYPE ECU_MOTOR_DRIVER_turn_clockwise(MOTOR_t *motor)
+[v _ECU_MOTOR_DRIVER_turn_clockwise `(uc ~T0 @X0 1 ef1`*S3 ]
+"21
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 21: {
+{
+[e :U _ECU_MOTOR_DRIVER_turn_clockwise ]
+"20
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 20: STD_RETURN_TYPE ECU_MOTOR_DRIVER_turn_clockwise(MOTOR_t *motor)
+[v _motor `*S3 ~T0 @X0 1 r1 ]
+"21
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 21: {
+[f ]
+"22
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 22:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"23
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 23:     if(0==motor)
+[e $ ! == -> -> 0 `i `*S3 _motor 8  ]
+"24
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 24:     {
+{
+"25
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 25:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"26
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 26:     }
+}
+[e $U 9  ]
+"27
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 27:     else
+[e :U 8 ]
+"28
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 28:     {
+{
+"29
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 29:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[0]),GPIO_HIGH);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 1 ]
+"30
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 30:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[1]),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 0 ]
+"31
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 31:     }
+}
+[e :U 9 ]
+"32
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 32:     return ret;
+[e ) _ret ]
+[e $UE 7  ]
+"33
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 33: }
+[e :UE 7 ]
+}
+"35
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 35: STD_RETURN_TYPE ECU_MOTOR_DRIVER_turn_counter_clockwise(MOTOR_t *motor)
+[v _ECU_MOTOR_DRIVER_turn_counter_clockwise `(uc ~T0 @X0 1 ef1`*S3 ]
+"36
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 36: {
+{
+[e :U _ECU_MOTOR_DRIVER_turn_counter_clockwise ]
+"35
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 35: STD_RETURN_TYPE ECU_MOTOR_DRIVER_turn_counter_clockwise(MOTOR_t *motor)
+[v _motor `*S3 ~T0 @X0 1 r1 ]
+"36
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 36: {
+[f ]
+"37
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 37:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"38
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 38:     if(0==motor)
+[e $ ! == -> -> 0 `i `*S3 _motor 11  ]
+"39
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 39:     {
+{
+"40
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 40:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"41
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 41:     }
+}
+[e $U 12  ]
+"42
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 42:     else
+[e :U 11 ]
+"43
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 43:     {
+{
+"44
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 44:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[1]),GPIO_HIGH);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 1 ]
+"45
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 45:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[0]),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 0 ]
+"46
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 46:     }
+}
+[e :U 12 ]
+"47
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 47:     return ret;
+[e ) _ret ]
+[e $UE 10  ]
+"48
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 48: }
+[e :UE 10 ]
+}
+"50
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 50: STD_RETURN_TYPE ECU_MOTOR_DRIVER_stop(MOTOR_t *motor)
+[v _ECU_MOTOR_DRIVER_stop `(uc ~T0 @X0 1 ef1`*S3 ]
+"51
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 51: {
+{
+[e :U _ECU_MOTOR_DRIVER_stop ]
+"50
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 50: STD_RETURN_TYPE ECU_MOTOR_DRIVER_stop(MOTOR_t *motor)
+[v _motor `*S3 ~T0 @X0 1 r1 ]
+"51
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 51: {
+[f ]
+"52
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 52:     STD_RETURN_TYPE ret=(STD_RETURN_TYPE)0x01;
+[v _ret `uc ~T0 @X0 1 a ]
+[e = _ret -> -> 1 `i `uc ]
+"53
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 53:     if(0==motor)
+[e $ ! == -> -> 0 `i `*S3 _motor 14  ]
+"54
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 54:     {
+{
+"55
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 55:         ret=(STD_RETURN_TYPE)0x00;
+[e = _ret -> -> 0 `i `uc ]
+"56
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 56:     }
+}
+[e $U 15  ]
+"57
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 57:     else
+[e :U 14 ]
+"58
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 58:     {
+{
+"59
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 59:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[0]),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 0 ]
+"60
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 60:         ret=GPIO_PIN_write_logic(&(motor->motor_pins[1]),GPIO_LOW);
+[e = _ret ( _GPIO_PIN_write_logic (2 , &U *U + &U . *U _motor 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _motor 0 `ui `ux . `E18 0 ]
+"61
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 61:     }
+}
+[e :U 15 ]
+"62
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 62:     return ret;
+[e ) _ret ]
+[e $UE 13  ]
+"63
+[; ;ECU/MOTOR_DRIVER/MOTOR_DRIVER.c: 63: }
+[e :UE 13 ]
+}
